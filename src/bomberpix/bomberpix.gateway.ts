@@ -5,15 +5,22 @@ import {
   SubscribeMessage,
   WebSocketGateway, WebSocketServer
 } from "@nestjs/websockets";
-import { Server, Socket } from "socket.io";
+import { Server } from 'colyseus'
+import { Socket } from "socket.io";
 import { Logger } from "@nestjs/common";
+import { MyRoomService } from "../rooms/myroom.service";
 
 @WebSocketGateway({cors: true})
 export class BomberpixGateway implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect{
-  @WebSocketServer() server: Server;
+  @WebSocketServer() server: Server
   private logger: Logger = new Logger("WebsocketGateway")
 
-  @SubscribeMessage('newMessage')
+  constructor() {
+    this.server = new Server()
+    this.server.define("my_room", MyRoomService)
+  }
+
+  /*@SubscribeMessage('newMessage')
   async handleMessage(client: Socket, payload: any) {
     this.server.emit('messageClient', 'olá')
   }
@@ -51,7 +58,7 @@ export class BomberpixGateway implements OnGatewayInit, OnGatewayConnection, OnG
   @SubscribeMessage('anim')
   async changeAnimations(client: Socket, payload: string){
     this.server.to('room01').emit('changeAnimation', {id: client.id, anim: payload})
-  }
+  }*/
 
 
 

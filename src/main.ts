@@ -8,9 +8,9 @@ import { ColyseusService } from "./colyseus/colyseus.service";
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
-  app.enableCors({
+  /*app.enableCors({
     origin: "*"
-  })
+  })*/
 
   const colyseusService = app.get(ColyseusService)
 

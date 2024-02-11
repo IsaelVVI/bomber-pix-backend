@@ -19,6 +19,6 @@ async function bootstrap() {
  /* const peerServerService = app.get(PeerServerService)
   peerServerService.enablePeerServer(app)*/
 
-  await app.listen(3003);
+  await app.listen(3002);
 }
 bootstrap();

@@ -10,7 +10,7 @@ import { Socket } from "socket.io";
 import { Logger } from "@nestjs/common";
 import { MyRoomService } from "../rooms/myroom.service";
 
-@WebSocketGateway({cors: true})
+// @WebSocketGateway({cors: true})
 export class BomberpixGateway implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect{
   @WebSocketServer() server: Server
   private logger: Logger = new Logger("WebsocketGateway")
